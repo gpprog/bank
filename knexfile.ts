@@ -13,8 +13,8 @@ const config: { [key: string]: Knex.Config } = {
     migrations: {
       tableName: 'knex_migrations',
       directory: './migrations',
-    }
-  },  
+    },
+  },
 };
 
 export default config;

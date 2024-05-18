@@ -2,7 +2,7 @@ import knex from './knex';
 
 interface Account {
   id?: number;
-  balance: number;  
+  balance: number;
   createdAt?: Date;
 }
 
@@ -13,11 +13,16 @@ export const createAccount = async (account: Account): Promise<number> => {
 export const getAllAccounts = async (): Promise<Account[]> => {
   return await knex('accounts').select('*');
 };
-export const getAccountById = async (id: number): Promise<Account | undefined> => {
+export const getAccountById = async (
+  id: number
+): Promise<Account | undefined> => {
   return await knex('accounts').where({ id }).first();
 };
 
-export const updateAccount = async (id: number, account: Partial<Account>): Promise<boolean> => {
+export const updateAccount = async (
+  id: number,
+  account: Partial<Account>
+): Promise<boolean> => {
   const result = await knex('accounts').where({ id }).update(account);
   return result > 0;
 };

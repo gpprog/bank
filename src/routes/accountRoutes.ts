@@ -5,10 +5,9 @@ import {
   getAccountByIdController,
   updateAccountController,
   deleteAccountController,
-} from '../controllers/account';
+} from '../controllers/accountController';
 
 const router = Router();
-
 
 router.post('/', createAccountController);
 router.get('/', getAllAccountsController);

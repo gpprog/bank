@@ -3,7 +3,7 @@ import {
   createTransactionController,
   getTransactionByIdController,
   getAllTransactionsController,
-} from '../controllers/transaction';
+} from '../controllers/transactionController';
 
 const router = Router();
 

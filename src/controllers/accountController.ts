@@ -1,16 +1,23 @@
 import { Request, Response } from 'express';
-import { createAccount, getAllAccounts, getAccountById, updateAccount, deleteAccount } from '../models/account';
+import {
+  createAccount,
+  getAllAccounts,
+  getAccountById,
+  updateAccount,
+  deleteAccount,
+} from '../models/account';
 
-export const createAccountController = async (req: Request, res: Response) => {  
-  console.log('Create Account, request body :',req.body);
+export const createAccountController = async (req: Request, res: Response) => {
+  console.log('Create Account, request body :', req.body);
   try {
+    const balance = req.body.balance || 0;
 
-    const  balance  = req.body.balance || 0;
-    
     if (balance < 0) {
-      return res.status(400).json({ error: 'Balance must be a positive number' });
+      return res
+        .status(400)
+        .json({ error: 'Balance must be a positive number' });
     }
-    
+
     const account = { balance, createdAt: new Date() };
     const id = await createAccount(account);
     res.status(201).json(id);
@@ -47,7 +54,9 @@ export const updateAccountController = async (req: Request, res: Response) => {
     const accountId = parseInt(req.params.id, 10);
     const { balance } = req.body;
     if (balance < 0) {
-      return res.status(400).json({ error: 'Balance must be a positive number' });
+      return res
+        .status(400)
+        .json({ error: 'Balance must be a positive number' });
     }
     const updatedAccount = { balance, updatedAt: new Date() };
     const success = await updateAccount(accountId, updatedAccount);
