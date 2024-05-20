@@ -55,15 +55,14 @@ The application should now be running at http://localhost:3000.
 
 ### Account
 
-* GET /accounts: Retrieve all accounts.
-* GET /accounts/:id: Retrieve a single account by ID.
-* POST /accounts: Create a new account.
-* PUT /accounts/:id: Update an existing account.
-* DELETE /accounts/:id: Delete an account by ID.
+* GET /account Retrieve all accounts.
+* GET /account/:id: Retrieve a single account by ID.
+* POST /account Create a new account.
+* DELETE /account/:id: Delete an account by ID.
 
 ### Transaction
 
-* GET /transaction/: Retrieve all transactions.
-* GET /transaction/:id: Retrieve a single transaction by ID.
-* POST /transaction: Create a new transaction.
+* GET /transaction/ Retrieve all transactions.
+* GET /transaction/:id Retrieve a single transaction by ID.
+* POST /transaction Create a new transaction.
 

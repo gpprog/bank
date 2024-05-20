@@ -8,7 +8,7 @@ import {
 const router = Router();
 
 router.post('/', createTransactionController);
-router.get('/transactions/:id', getTransactionByIdController);
-router.get('/all', getAllTransactionsController);
+router.get('/:id', getTransactionByIdController);
+router.get('/', getAllTransactionsController);
 
 export default router;

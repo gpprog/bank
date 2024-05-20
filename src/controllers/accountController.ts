@@ -8,7 +8,7 @@ import {
 } from '../models/account';
 
 export const createAccountController = async (req: Request, res: Response) => {
-  console.log('Create Account, request body :', req.body);
+  console.log('createAccountController, request body :', req.body);
   try {
     const balance = req.body.balance || 0;
 
@@ -27,6 +27,7 @@ export const createAccountController = async (req: Request, res: Response) => {
 };
 
 export const getAllAccountsController = async (req: Request, res: Response) => {
+  console.log('getAllAccountsController request body:', req.body);
   try {
     const accounts = await getAllAccounts();
     res.status(200).json(accounts);
@@ -36,6 +37,7 @@ export const getAllAccountsController = async (req: Request, res: Response) => {
 };
 
 export const getAccountByIdController = async (req: Request, res: Response) => {
+  console.log('getAccountByIdController request body :', req.body);
   try {
     const accountId = parseInt(req.params.id, 10);
     const account = await getAccountById(accountId);
@@ -50,6 +52,7 @@ export const getAccountByIdController = async (req: Request, res: Response) => {
 };
 
 export const updateAccountController = async (req: Request, res: Response) => {
+  console.log('updateAccountController reqest body:', req.body);
   try {
     const accountId = parseInt(req.params.id, 10);
     const { balance } = req.body;
@@ -71,7 +74,7 @@ export const updateAccountController = async (req: Request, res: Response) => {
 };
 
 export const deleteAccountController = async (req: Request, res: Response) => {
-  console.log('Delete Account request body:', req.body);
+  console.log('deleteAccountController request body:', req.body);
   try {
     const accountId = parseInt(req.params.id, 10);
     const success = await deleteAccount(accountId);
@@ -82,5 +85,25 @@ export const deleteAccountController = async (req: Request, res: Response) => {
     }
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete account' });
+  }
+};
+
+export const getTotalAssetsController = async (req: Request, res: Response) => {
+  console.log('getTotalAssetsController request');
+  try {
+    // Fetch all accounts from the database
+    const accounts = await getAllAccounts();
+
+    // Calculate the total balance by summing up the balances of all accounts
+    const totalAssets = accounts.reduce(
+      (total, account) => total + parseFloat(account.balance.toString()),
+      0
+    );
+
+    // Send the total balance as the response
+    res.status(200).json({ totalAssets });
+  } catch (error) {
+    console.error('Error fetching total assets:', error);
+    res.status(500).json({ error: 'Failed to fetch total assets' });
   }
 };

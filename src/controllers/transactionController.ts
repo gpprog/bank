@@ -1,6 +1,5 @@
-// src/controllers/transactionController.ts
 import { Request, Response } from 'express';
-import knex from '../models/knex'; // Assuming you have a knex instance configured
+import knex from '../models/knex';
 import { getAccountById, updateAccount } from '../models/account';
 import { createTransaction, getAllTransactions } from '../models/transaction';
 
@@ -8,10 +7,10 @@ export const createTransactionController = async (
   req: Request,
   res: Response
 ) => {
-  console.log('Create Transaction, request body :', req.body);
+  console.log('createTransactionControllrer, request body :', req.body);
   try {
     const { sourceAccountId, targetAccountId, amount } = req.body;
-
+    // Check if source and target maches
     if (sourceAccountId === targetAccountId)
       return res
         .status(405)
@@ -73,6 +72,7 @@ export const getTransactionByIdController = async (
   req: Request,
   res: Response
 ) => {
+  console.log('getTransactionByIdController reqest body:', req.body);
   try {
     const transactionId = req.params.id;
     const transaction = await knex('transactions')
@@ -92,6 +92,7 @@ export const getAllTransactionsController = async (
   req: Request,
   res: Response
 ) => {
+  console.log('getAllTransactionsController request');
   try {
     const transactions = await getAllTransactions();
     res.status(200).json(transactions);
