@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/app.js",
+    "start": "node dist/src/index.js",
     "build": "tsc",
-    "dev": "nodemon --exec ts-node src/app.ts",
+    "dev": "nodemon --exec ts-node src/index.ts",
     "db:migrations:run": "npx knex migrate:latest",
     "db:create": "dotenv -e .env -- psql -U $DATABASE_USERNAME -h localhost -c \"CREATE DATABASE bank;\"",
     "lint": "npx eslint .",

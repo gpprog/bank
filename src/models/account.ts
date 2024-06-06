@@ -3,7 +3,7 @@ import knex from './knex';
 interface Account {
   id?: number;
   balance: number;
-  createdAt?: Date;
+  createdAt: Date;
 }
 
 export const createAccount = async (account: Account): Promise<number> => {
