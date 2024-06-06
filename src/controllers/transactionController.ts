@@ -37,10 +37,9 @@ export const createTransactionController = async (
     const transferAmount = Number(amount);
 
     // Calculate balances
-    const newSourceBalance = Number(sourceBalance - transferAmount);
-    console.log('NEW SOURCE BALANCE', newSourceBalance);
+    const newSourceBalance = Number(sourceBalance - transferAmount);    
     const newTargetBalance = Number(tarbetBalance + transferAmount);
-    console.log('NEW TARGET BALANCE', newTargetBalance);
+    
 
     // Perform the transaction
     try {
