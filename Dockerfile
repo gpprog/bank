@@ -15,6 +15,3 @@ COPY . .
 
 # Run the build script to generate the 'dist' folder
 RUN npm run build
-
-# Set the command to start your application
-CMD ["npm", "run", "dev"]
